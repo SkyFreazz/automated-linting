@@ -1,0 +1,7 @@
+venv
+``
+
+- Install pre-commit hooks:
+
+```bash
+pip install pre-commit
