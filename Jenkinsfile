@@ -1,5 +1,8 @@
  pipeline {
      agent any
+     environment {
+         DOCKER_CREDENTIALS = credentials('dockerhub-credentials') // Use the ID of your credentials
+     }
      stages {
          stage('Lint') {
              steps {
@@ -25,6 +28,7 @@
          }
          stage('Build') {
              steps {
+		 sh 'echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --password-stdin'
                  sh 'docker build -t skyfreazz/flask-app:0.0.1 .'
                  sh 'docker push skyfreazz/flask-app:0.0.1'
              }
