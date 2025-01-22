@@ -5,6 +5,7 @@
              steps {
                  sh '''
                  #!/bin/bash
+                 apt install python3.10-venv
                  python3 -m venv venv
                  . ./venv/bin/activate
                  pip install flake8
