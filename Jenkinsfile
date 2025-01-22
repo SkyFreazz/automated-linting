@@ -15,6 +15,9 @@
          stage('Format') {
              steps {
                  sh '''
+                 #!/bin/bash
+                 python3 -m venv venv
+                 . ./venv/bin/activate
                  pip install black
                  black --check app.py
                  '''
