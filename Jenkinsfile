@@ -2,7 +2,7 @@
      agent any
      environment {
          DOCKER_CREDENTIALS = credentials('e0f79c37-13a6-4fa7-b95f-ebd046877ad0') // Use the ID of your credentials
-         KUBECONFIG = '~/.kube/config'
+         KUBECONFIG = '/var/lib/jenkins/.kube/config'
      }
      stages {
          stage('Lint') {
