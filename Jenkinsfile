@@ -33,5 +33,11 @@
                  sh 'docker push skyfreazz/flask-app:0.0.1'
              }
          }
+         stage('Deploy to Kubernetes') {
+             steps {
+                 sh "kubectl --kubeconfig=$KUBECONFIG set image deployment/$K8S_DEPLOYMENT $K8S_DEPLOYMENT=$DOCKER_REGISTRY/$IMAGE_NAME:$BUILD_NUMBER"
+                 sh "kubectl --kubeconfig=$KUBECONFIG rollout status deployment/$K8S_DEPLOYMENT"
+             }
+         }
      }
  }
