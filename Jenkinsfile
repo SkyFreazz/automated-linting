@@ -1,11 +1,10 @@
  pipeline {
      agent any
      stages {
-         stage('install'){
+         stage('Lint') {
              steps {
                  sh '''
                  #!/bin/bash
-                 apt install python3.10-venv
                  python3 -m venv venv
                  . ./venv/bin/activate
                  pip install flake8
@@ -13,14 +12,12 @@
                  '''
              }
          }
-         stage('Lint') {
-             steps {
-                 sh 'flake8 app.py'
-             }
-         }
          stage('Format') {
              steps {
-                 sh 'black --check app.py'
+                 sh '''
+                 pip install black
+                 black --check app.py
+                 '''
              }
          }
          stage('Build') {
