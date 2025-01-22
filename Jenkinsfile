@@ -2,6 +2,7 @@
      agent any
      environment {
          DOCKER_CREDENTIALS = credentials('e0f79c37-13a6-4fa7-b95f-ebd046877ad0') // Use the ID of your credentials
+         KUBECONFIG = '~/.kube/config'
      }
      stages {
          stage('Lint') {
@@ -35,8 +36,9 @@
          }
          stage('Deploy to Kubernetes') {
              steps {
-                 sh "kubectl apply -f deployment.yaml"
-                 sh "kubectl apply -f service.yaml"
+                 sh 'kubectl config view --raw > ~/.kube/config'
+                 sh 'kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml'
+                 sh 'kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml'
              }
          }
      }
