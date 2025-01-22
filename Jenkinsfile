@@ -36,7 +36,7 @@
          }
          stage('Deploy to Kubernetes') {
              steps {
-                 sh 'kubectl config view --raw > ~/.kube/config'
+                 sh 'kubectl config view --raw > $KUBECONFIG'
                  sh 'kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml'
                  sh 'kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml'
              }
