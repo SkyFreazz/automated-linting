@@ -25,8 +25,8 @@
          }
          stage('Build') {
              steps {
-                 sh 'docker build -t <dockerhub-username>/<repo-name>:0.0.1 .'
-                 sh 'docker push <dockerhub-username>/<repo-name>:0.0.1'
+                 sh 'docker build -t skyfreazz/flask-app:0.0.1 .'
+                 sh 'docker push skyfreazz/flask-app:0.0.1'
              }
          }
      }
