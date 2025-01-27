@@ -36,7 +36,7 @@
          }
          stage('Deploy to Kubernetes') {
              steps {
-                 sh 'kubectl config view --raw > $KUBECONFIG'
+                 sh 'kind get cluster --name lab_jenkins'
                  sh 'kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml'
                  sh 'kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml'
              }
